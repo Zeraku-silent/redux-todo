@@ -22,16 +22,16 @@ export const List = () => {
     }
   }, [tasks]);
 
-  const tasksSort = () => {
-    setFiltredTasks((prev) => {
-      const sorted = [...prev].sort((a, b) => {
-        if (b.date > a.date) {
-          return -1;
-        }
-      });
-      return sort ? sorted : sorted.reverse();
-    });
-  };
+  // const tasksSort = () => {
+  //   setFiltredTasks((prev) => {
+  //     const sorted = [...prev].sort((a, b) => {
+  //       if (b.date > a.date) {
+  //         return -1;
+  //       }
+  //     });
+  //     return sort ? sorted : sorted.reverse();
+  //   });
+  // };
 
   const addTodo = (text) => {
     const date = new Date().toLocaleString();
@@ -61,41 +61,41 @@ export const List = () => {
     );
   };
 
-  const changeSort = () => {
-    setSort((prev) => !prev);
-  };
-  const changeFilter = (e) => {
-    setFilter(e.target.value);
-  };
+  // const changeSort = () => {
+  //   setSort((prev) => !prev);
+  // };
+  // const changeFilter = (e) => {
+  //   setFilter(e.target.value);
+  // };
 
-  const showFiltred = () => {
-    setFiltredTasks(
-      tasks.filter((task) => {
-        if (filter === "success") {
-          return task.checked;
-        }
-        if (filter === "unsuccess") {
-          return !task.checked;
-        }
+  // const showFiltred = () => {
+  //   setFiltredTasks(
+  //     tasks.filter((task) => {
+  //       if (filter === "success") {
+  //         return task.checked;
+  //       }
+  //       if (filter === "unsuccess") {
+  //         return !task.checked;
+  //       }
 
-        return tasks;
-      })
-    );
-  };
-  useEffect(() => {
-    tasksSort();
-  }, [sort, tasks]);
+  //       return tasks;
+  //     })
+  //   );
+  // };
+  // useEffect(() => {
+  //   tasksSort();
+  // }, [sort, tasks]);
 
-  useEffect(() => {
-    showFiltred();
-  }, [tasks, filter]);
+  // useEffect(() => {
+  //   showFiltred();
+  // }, [tasks, filter]);
 
   return (
     <div>
       <Controller addTodo={addTodo} />
 
       <TasksList>
-        <select value={filter} onChange={changeFilter}>
+        {/* <select value={filter} onChange={changeFilter}>
           <option value="all">Все задачи</option>
           <option value="unsuccess">Только невыполненные</option>
           <option value="success">Только выполненные</option>
@@ -115,9 +115,9 @@ export const List = () => {
           onClick={changeSort}
         >
           ↓↑
-        </button>
+        </button> */}
 
-        {filtredTasks.map((item) => (
+        {tasks.map((item) => (
           <Task
             editingTask={taskNameChange}
             task={item}
