@@ -5,22 +5,22 @@ import { useEffect, useRef, useState } from "react";
 import { nanoid } from "nanoid";
 
 export const List = () => {
-  const [tasks, setTasks] = useState([]);
-  const [sort, setSort] = useState(true);
-  const [filter, setFilter] = useState("all");
-  const [filtredTasks, setFiltredTasks] = useState([]);
-  const [time, setTime] = useState([]);
+  // const [tasks, setTasks] = useState([]);
+  // const [sort, setSort] = useState(true);
+  // const [filter, setFilter] = useState("all");
+  // const [filtredTasks, setFiltredTasks] = useState([]);
+  // const [time, setTime] = useState([]);
 
-  useEffect(() => {
-    const startStoradge = localStorage.getItem("tasks") || "[]";
-    setTasks(JSON.parse(startStoradge));
-  }, []);
+  // useEffect(() => {
+  //   const startStoradge = localStorage.getItem("tasks") || "[]";
+  //   setTasks(JSON.parse(startStoradge));
+  // }, []);
 
-  useEffect(() => {
-    if (tasks.length > 0) {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-    }
-  }, [tasks]);
+  // useEffect(() => {
+  //   if (tasks.length > 0) {
+  //     localStorage.setItem("tasks", JSON.stringify(tasks));
+  //   }
+  // }, [tasks]);
 
   // const tasksSort = () => {
   //   setFiltredTasks((prev) => {
@@ -37,29 +37,29 @@ export const List = () => {
     const date = new Date().toLocaleString();
     const id = nanoid();
     const newTask = { id, text, checked: false, date };
-    setTasks((prev) => [...prev, newTask]);
+    // setTasks((prev) => [...prev, newTask]);
   };
 
-  const handleRemove = (id) => {
-    setTasks((prev) => prev.filter((task) => task.id !== id));
-    if (tasks.length === 1) {
-      localStorage.setItem("tasks", "[]");
-    }
-  };
+  // const handleRemove = (id) => {
+  //   setTasks((prev) => prev.filter((task) => task.id !== id));
+  //   if (tasks.length === 1) {
+  //     localStorage.setItem("tasks", "[]");
+  //   }
+  // };
 
-  const handleChange = (id) => {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id !== id ? task : { ...task, checked: !task.checked }
-      )
-    );
-  };
+  // const handleChange = (id) => {
+  //   setTasks((prev) =>
+  //     prev.map((task) =>
+  //       task.id !== id ? task : { ...task, checked: !task.checked }
+  //     )
+  //   );
+  // };
 
-  const taskNameChange = (id, text) => {
-    setTasks((prev) =>
-      prev.map((task) => (task.id !== id ? task : { ...task, text }))
-    );
-  };
+  // const taskNameChange = (id, text) => {
+  //   setTasks((prev) =>
+  //     prev.map((task) => (task.id !== id ? task : { ...task, text }))
+  //   );
+  // };
 
   // const changeSort = () => {
   //   setSort((prev) => !prev);
@@ -94,8 +94,8 @@ export const List = () => {
     <div>
       <Controller addTodo={addTodo} />
 
-      <TasksList>
-        {/* <select value={filter} onChange={changeFilter}>
+      {/* <TasksList> */}
+      {/* <select value={filter} onChange={changeFilter}>
           <option value="all">Все задачи</option>
           <option value="unsuccess">Только невыполненные</option>
           <option value="success">Только выполненные</option>
@@ -117,7 +117,7 @@ export const List = () => {
           ↓↑
         </button> */}
 
-        {tasks.map((item) => (
+      {/* {tasks.map((item) => (
           <Task
             editingTask={taskNameChange}
             task={item}
@@ -127,8 +127,8 @@ export const List = () => {
           >
             {item.checked ? <p>'Выполнено'</p> : <p>'Не выполнено'</p>}
           </Task>
-        ))}
-      </TasksList>
+        ))} */}
+      {/* </TasksList> */}
     </div>
   );
 };
