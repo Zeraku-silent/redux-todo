@@ -44,12 +44,13 @@ export const List = () => {
     // setTasks((prev) => [...prev, newTask]);
   };
 
-  // const handleRemove = (id) => {
-  //   setTasks((prev) => prev.filter((task) => task.id !== id));
-  //   if (tasks.length === 1) {
-  //     localStorage.setItem("tasks", "[]");
-  //   }
-  // };
+  const handleRemove = (id) => {
+    dispatch({ type: "REMOVE_TASK", payload: id });
+    console.log(id);
+    if (tasks.length === 1) {
+      localStorage.setItem("tasks", "[]");
+    }
+  };
 
   // const handleChange = (id) => {
   //   setTasks((prev) =>
@@ -96,11 +97,10 @@ export const List = () => {
 
   return (
     <div>
-      <button>Добавить</button>
       <Controller addTodo={addTodo} />
 
-      {/* <TasksList> */}
-      {/* <select value={filter} onChange={changeFilter}>
+      <TasksList>
+        {/* <select value={filter} onChange={changeFilter}>
           <option value="all">Все задачи</option>
           <option value="unsuccess">Только невыполненные</option>
           <option value="success">Только выполненные</option>
@@ -122,18 +122,18 @@ export const List = () => {
           ↓↑
         </button> */}
 
-      {tasks.map((item) => (
-        <Task
-          // editingTask={taskNameChange}
-          task={item}
-          key={item.id}
-          // handleRemove={handleRemove}
-          // handleToggle={handleChange}
-        >
-          {item.checked ? <p>'Выполнено'</p> : <p>'Не выполнено'</p>}
-        </Task>
-      ))}
-      {/* </TasksList> */}
+        {tasks.map((item) => (
+          <Task
+            // editingTask={taskNameChange}
+            task={item}
+            key={item.id}
+            handleRemove={handleRemove}
+            // handleToggle={handleChange}
+          >
+            {/* {item.checked ? <p>'Выполнено'</p> : <p>'Не выполнено'</p>} */}
+          </Task>
+        ))}
+      </TasksList>
     </div>
   );
 };

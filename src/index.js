@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const defaultState = {
   tasks: [],
@@ -13,15 +14,18 @@ const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case "ADD_TASK":
       return { ...state, tasks: [...state.tasks, action.payload] };
-    // case "REMOVE_TASK":
-    //   return { ...state, tasks: state.tasks.filter((task) => task.id !== id) };
+    case "REMOVE_TASK":
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== action.payload),
+      };
 
     default:
       return state;
   }
 };
 
-const store = createStore(reducer);
+const store = createStore(reducer, composeWithDevTools());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
