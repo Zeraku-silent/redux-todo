@@ -3,6 +3,7 @@ import { Task } from "../Task";
 import { Controller } from "../Controller";
 import { useEffect, useRef, useState } from "react";
 import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
 
 export const List = () => {
   // const [tasks, setTasks] = useState([]);
@@ -32,11 +33,14 @@ export const List = () => {
   //     return sort ? sorted : sorted.reverse();
   //   });
   // };
+  const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.tasks);
 
   const addTodo = (text) => {
     const date = new Date().toLocaleString();
     const id = nanoid();
     const newTask = { id, text, checked: false, date };
+    dispatch({ type: "ADD_TASK", payload: newTask });
     // setTasks((prev) => [...prev, newTask]);
   };
 
@@ -92,6 +96,7 @@ export const List = () => {
 
   return (
     <div>
+      <button>Добавить</button>
       <Controller addTodo={addTodo} />
 
       {/* <TasksList> */}
@@ -117,17 +122,17 @@ export const List = () => {
           ↓↑
         </button> */}
 
-      {/* {tasks.map((item) => (
-          <Task
-            editingTask={taskNameChange}
-            task={item}
-            key={item.id}
-            handleRemove={handleRemove}
-            handleToggle={handleChange}
-          >
-            {item.checked ? <p>'Выполнено'</p> : <p>'Не выполнено'</p>}
-          </Task>
-        ))} */}
+      {tasks.map((item) => (
+        <Task
+          // editingTask={taskNameChange}
+          task={item}
+          key={item.id}
+          // handleRemove={handleRemove}
+          // handleToggle={handleChange}
+        >
+          {item.checked ? <p>'Выполнено'</p> : <p>'Не выполнено'</p>}
+        </Task>
+      ))}
       {/* </TasksList> */}
     </div>
   );
