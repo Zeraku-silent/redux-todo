@@ -1,4 +1,8 @@
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { tasksReducer } from "./tasksReducer";
 
-export const store = createStore(reducer, composeWithDevTools());
+const rootReducer = combineReducers({
+  tasks: tasksReducer,
+});
+export const store = createStore(rootReducer, composeWithDevTools());

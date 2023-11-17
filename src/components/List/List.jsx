@@ -34,7 +34,7 @@ export const List = () => {
   //   });
   // };
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks);
+  const tasks = useSelector((state) => state.tasks.tasks);
 
   const addTodo = (text) => {
     const date = new Date().toLocaleString();
