@@ -12,3 +12,8 @@ export const toggleCheckbox = (payload) => ({
   type: "TOGGLE_CHECKBOX",
   payload,
 });
+
+export const taskEditing = (payload) => ({
+  type: "EDIT_TASK",
+  payload: { id: payload.id, text: payload.text },
+});

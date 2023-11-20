@@ -4,10 +4,12 @@ import { tasksReducer } from "./tasksReducer";
 import { createNewTask } from "./tasksActions";
 import { removeTask } from "./tasksActions";
 import { toggleCheckbox } from "./tasksActions";
+import { taskEditing } from "./tasksActions";
 
 export { createNewTask };
 export { removeTask };
 export { toggleCheckbox };
+export { taskEditing };
 
 const rootReducer = combineReducers({
   tasks: tasksReducer,

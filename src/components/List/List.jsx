@@ -4,10 +4,14 @@ import { Controller } from "../Controller";
 import { useEffect, useRef, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { createNewTask, removeTask, toggleCheckbox } from "../../store";
+import {
+  createNewTask,
+  removeTask,
+  taskEditing,
+  toggleCheckbox,
+} from "../../store";
 
 export const List = () => {
-  // const [tasks, setTasks] = useState([]);
   // const [sort, setSort] = useState(true);
   // const [filter, setFilter] = useState("all");
   // const [filtredTasks, setFiltredTasks] = useState([]);
@@ -52,11 +56,10 @@ export const List = () => {
     dispatch(toggleCheckbox(id));
   };
 
-  // const taskNameChange = (id, text) => {
-  //   setTasks((prev) =>
-  //     prev.map((task) => (task.id !== id ? task : { ...task, text }))
-  //   );
-  // };
+  const taskNameChange = (id, text) => {
+    // dispatch(taskEditing(id, text));
+    dispatch({ type: "EDIT_TASK", payload: { id, text } });
+  };
 
   // const changeSort = () => {
   //   setSort((prev) => !prev);
@@ -116,7 +119,7 @@ export const List = () => {
 
         {tasks.map((item) => (
           <Task
-            // editingTask={taskNameChange}
+            editingTask={taskNameChange}
             task={item}
             key={item.id}
             handleRemove={handleRemove}

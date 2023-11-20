@@ -25,6 +25,15 @@ export const tasksReducer = (state = defaultState, action) => {
             : { ...task, checked: !task.checked }
         ),
       };
+    case "EDIT_TASK":
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id !== action.payload.id
+            ? task
+            : { ...task, text: action.payload.text }
+        ),
+      };
 
     default:
       return state;
