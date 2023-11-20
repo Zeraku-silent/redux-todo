@@ -16,6 +16,15 @@ export const tasksReducer = (state = defaultState, action) => {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.payload),
       };
+    case "TOGGLE_CHECKBOX":
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id !== action.payload
+            ? task
+            : { ...task, checked: !task.checked }
+        ),
+      };
 
     default:
       return state;

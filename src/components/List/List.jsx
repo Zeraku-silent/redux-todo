@@ -4,7 +4,7 @@ import { Controller } from "../Controller";
 import { useEffect, useRef, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { createNewTask } from "../../store";
+import { createNewTask, removeTask, toggleCheckbox } from "../../store";
 
 export const List = () => {
   // const [tasks, setTasks] = useState([]);
@@ -39,24 +39,18 @@ export const List = () => {
 
   const addTodo = (text) => {
     dispatch(createNewTask(text));
-    // setTasks((prev) => [...prev, newTask]);
   };
 
   const handleRemove = (id) => {
-    dispatch({ type: "REMOVE_TASK", payload: id });
-    console.log(id);
+    dispatch(removeTask(id));
     if (tasks.length === 1) {
       localStorage.setItem("tasks", "[]");
     }
   };
 
-  // const handleChange = (id) => {
-  //   setTasks((prev) =>
-  //     prev.map((task) =>
-  //       task.id !== id ? task : { ...task, checked: !task.checked }
-  //     )
-  //   );
-  // };
+  const handleChange = (id) => {
+    dispatch(toggleCheckbox(id));
+  };
 
   // const taskNameChange = (id, text) => {
   //   setTasks((prev) =>
@@ -126,7 +120,7 @@ export const List = () => {
             task={item}
             key={item.id}
             handleRemove={handleRemove}
-            // handleToggle={handleChange}
+            handleToggle={handleChange}
           >
             {/* {item.checked ? <p>'Выполнено'</p> : <p>'Не выполнено'</p>} */}
           </Task>
