@@ -2,8 +2,9 @@ import { TasksList } from "./List.styles";
 import { Task } from "../Task";
 import { Controller } from "../Controller";
 import { useEffect, useRef, useState } from "react";
-import { nanoid } from "nanoid";
+
 import { useDispatch, useSelector } from "react-redux";
+import { createNewTask } from "../../store";
 
 export const List = () => {
   // const [tasks, setTasks] = useState([]);
@@ -37,10 +38,7 @@ export const List = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
 
   const addTodo = (text) => {
-    const date = new Date().toLocaleString();
-    const id = nanoid();
-    const newTask = { id, text, checked: false, date };
-    dispatch({ type: "ADD_TASK", payload: newTask });
+    dispatch(createNewTask(text));
     // setTasks((prev) => [...prev, newTask]);
   };
 

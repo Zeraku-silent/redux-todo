@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 const defaultState = {
   tasks: [],
 };
@@ -5,7 +7,10 @@ const defaultState = {
 export const tasksReducer = (state = defaultState, action) => {
   switch (action.type) {
     case "ADD_TASK":
-      return { ...state, tasks: [...state.tasks, action.payload] };
+      const date = new Date().toLocaleString();
+      const id = nanoid();
+      const newTask = { id, text: action.payload, checked: false, date };
+      return { ...state, tasks: [...state.tasks, newTask] };
     case "REMOVE_TASK":
       return {
         ...state,
