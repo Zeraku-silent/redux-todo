@@ -9,6 +9,7 @@ import {
   removeTask,
   taskEditing,
   toggleCheckbox,
+  toggleSort,
 } from "../../store";
 
 export const List = () => {
@@ -28,21 +29,22 @@ export const List = () => {
   //   }
   // }, [tasks]);
 
-  // const tasksSort = () => {
-  //   setFiltredTasks((prev) => {
-  //     const sorted = [...prev].sort((a, b) => {
-  //       if (b.date > a.date) {
-  //         return -1;
-  //       }
-  //     });
-  //     return sort ? sorted : sorted.reverse();
-  //   });
-  // };
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks.tasks);
+  const sort = useSelector((state) => state.sorted.sorted);
+
+  const tasksSort = () => {
+    const sorted = tasks.sort((a, b) => {
+      if (b.date > a.date) {
+        return -1;
+      }
+    });
+    return sort ? sorted : sorted.reverse();
+  };
 
   const addTodo = (text) => {
     dispatch(createNewTask(text));
+    // tasksSort();
   };
 
   const handleRemove = (id) => {
@@ -61,9 +63,10 @@ export const List = () => {
     dispatch({ type: "EDIT_TASK", payload: { id, text } });
   };
 
-  // const changeSort = () => {
-  //   setSort((prev) => !prev);
-  // };
+  const changeSort = () => {
+    dispatch(toggleSort());
+    tasksSort();
+  };
   // const changeFilter = (e) => {
   //   setFilter(e.target.value);
   // };
@@ -82,9 +85,9 @@ export const List = () => {
   //     })
   //   );
   // };
-  // useEffect(() => {
-  //   tasksSort();
-  // }, [sort, tasks]);
+  useEffect(() => {
+    tasksSort();
+  }, [sort, tasks]);
 
   // useEffect(() => {
   //   showFiltred();
@@ -93,29 +96,28 @@ export const List = () => {
   return (
     <div>
       <Controller addTodo={addTodo} />
-
+      <button
+        style={{
+          backgroundColor: "green",
+          border: "1px solid gray",
+          color: "white",
+          borderRadius: 8,
+          padding: 6,
+          margin: 5,
+          textDecoration: "none",
+          display: "inline - block",
+          fontSize: 12,
+        }}
+        onClick={changeSort}
+      >
+        ↓↑
+      </button>
       <TasksList>
         {/* <select value={filter} onChange={changeFilter}>
           <option value="all">Все задачи</option>
           <option value="unsuccess">Только невыполненные</option>
           <option value="success">Только выполненные</option>
-        </select>
-        <button
-          style={{
-            backgroundColor: "green",
-            border: "1px solid gray",
-            color: "white",
-            borderRadius: 8,
-            padding: 6,
-            margin: 5,
-            textDecoration: "none",
-            display: "inline - block",
-            fontSize: 12,
-          }}
-          onClick={changeSort}
-        >
-          ↓↑
-        </button> */}
+        </select> */}
 
         {tasks.map((item) => (
           <Task
