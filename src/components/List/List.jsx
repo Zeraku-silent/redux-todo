@@ -10,15 +10,38 @@ import {
   taskEditing,
   toggleCheckbox,
   toggleSort,
+  toggleFilter,
 } from "../../store";
 
 export const List = () => {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks.tasks);
   const sort = useSelector((state) => state.sorted.sorted);
+  const filter = useSelector((state) => state.filter.filter);
+
+  const changeFilter = (e) => {
+    dispatch(toggleFilter(e.target.value));
+  };
+
+  const tasksFiltration = () => {
+    const filtredTasks = tasks.filter((task) => {
+      if (filter === "success") {
+        return task.checked;
+      }
+      if (filter === "unsuccess") {
+        return !task.checked;
+      }
+      return tasks;
+    });
+    return filtredTasks;
+  };
+
+  useEffect(() => {
+    tasksFiltration();
+  }, [tasks, filter]);
 
   const tasksSort = () => {
-    const sorted = [...tasks].sort((a, b) => {
+    const sorted = tasksFiltration().sort((a, b) => {
       if (b.date > a.date) {
         return -1;
       }
@@ -73,11 +96,11 @@ export const List = () => {
         ↓↑
       </button>
       <TasksList>
-        {/* <select value={filter} onChange={changeFilter}>
+        <select value={filter} onChange={changeFilter}>
           <option value="all">Все задачи</option>
           <option value="unsuccess">Только невыполненные</option>
           <option value="success">Только выполненные</option>
-        </select> */}
+        </select>
         {tasksSort().map((item) => (
           <Task
             editingTask={taskNameChange}
