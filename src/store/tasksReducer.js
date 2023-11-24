@@ -35,6 +35,9 @@ export const tasksReducer = (state = defaultState, action) => {
         ),
       };
 
+    case "LOAD_STORAGE":
+      return { ...state, tasks: action.payload };
+
     default:
       return state;
   }

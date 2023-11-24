@@ -17,3 +17,8 @@ export const taskEditing = (payload) => ({
   type: "EDIT_TASK",
   payload: { id: payload.id, ...payload },
 });
+
+export const loadStorage = (payload) => ({
+  type: "LOAD_STORAGE",
+  payload,
+});

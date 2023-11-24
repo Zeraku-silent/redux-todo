@@ -11,6 +11,7 @@ import {
   toggleCheckbox,
   toggleSort,
   toggleFilter,
+  loadStorage,
 } from "../../store";
 
 export const List = () => {
@@ -18,6 +19,15 @@ export const List = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   const sort = useSelector((state) => state.sorted.sorted);
   const filter = useSelector((state) => state.filter.filter);
+
+  useEffect(() => {
+    const startStorage = localStorage.getItem("storage") || "[]";
+    dispatch(loadStorage(JSON.parse(startStorage)));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("storage", JSON.stringify(tasks));
+  }, [tasks]);
 
   const changeFilter = (e) => {
     dispatch(toggleFilter(e.target.value));
@@ -39,6 +49,13 @@ export const List = () => {
   useEffect(() => {
     tasksFiltration();
   }, [tasks, filter]);
+  useEffect(() => {
+    tasksSort();
+  }, [sort, tasks]);
+
+  useEffect(() => {
+    tasksSort();
+  }, [sort, tasks]);
 
   const tasksSort = () => {
     const sorted = tasksFiltration().sort((a, b) => {
@@ -55,9 +72,6 @@ export const List = () => {
 
   const handleRemove = (id) => {
     dispatch(removeTask(id));
-    if (tasks.length === 1) {
-      localStorage.setItem("tasks", "[]");
-    }
   };
 
   const handleChange = (id) => {
@@ -71,10 +85,6 @@ export const List = () => {
   const changeSort = () => {
     dispatch(toggleSort());
   };
-
-  useEffect(() => {
-    tasksSort();
-  }, [sort, tasks]);
 
   return (
     <div>

@@ -9,6 +9,7 @@ import { sortReducer } from "./sortReducer";
 import { toggleSort } from "./sortReducer";
 import { toggleFilter } from "./filterReducer";
 import { filterReducer } from "./filterReducer";
+import { loadStorage } from "./tasksActions";
 
 export { createNewTask };
 export { removeTask };
@@ -16,6 +17,7 @@ export { toggleCheckbox };
 export { taskEditing };
 export { toggleSort };
 export { toggleFilter };
+export { loadStorage };
 
 const rootReducer = combineReducers({
   tasks: tasksReducer,
