@@ -4,12 +4,27 @@ import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import {
+  ChakraProvider,
+  Box,
+  Text,
+  Link,
+  VStack,
+  Code,
+  Grid,
+  theme,
+} from "@chakra-ui/react";
+import { ColorModeSwitcher } from "./components/ColorModeSwitcher";
+import { Header } from "./components/Header";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <ChakraProvider theme={theme}>
+    <Provider store={store}>
+      <Header />
+      <App />
+    </Provider>
+  </ChakraProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
