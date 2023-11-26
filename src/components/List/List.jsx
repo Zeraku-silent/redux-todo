@@ -2,6 +2,7 @@ import { TasksList } from "./List.styles";
 import { Task } from "../Task";
 import { Controller } from "../Controller";
 import { useEffect, useRef, useState } from "react";
+import { FaArrowCircleUp } from "react-icons/fa";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,6 +14,7 @@ import {
   toggleFilter,
   loadStorage,
 } from "../../store";
+import { Button, Container, Box, Select, Flex } from "@chakra-ui/react";
 
 export const List = () => {
   const dispatch = useDispatch();
@@ -87,30 +89,29 @@ export const List = () => {
   };
 
   return (
-    <div>
-      <Controller addTodo={addTodo} />
-      <button
-        style={{
-          backgroundColor: "green",
-          border: "1px solid gray",
-          color: "white",
-          borderRadius: 8,
-          padding: 6,
-          margin: 5,
-          textDecoration: "none",
-          display: "inline - block",
-          fontSize: 12,
-        }}
-        onClick={changeSort}
-      >
-        ↓↑
-      </button>
+    <Container maxW="container.sm">
+      <Box>
+        <Controller addTodo={addTodo} />
+      </Box>
       <TasksList>
-        <select value={filter} onChange={changeFilter}>
-          <option value="all">Все задачи</option>
-          <option value="unsuccess">Только невыполненные</option>
-          <option value="success">Только выполненные</option>
-        </select>
+        <Container size="lg" m={4}>
+          <Flex>
+            <Select value={filter} onChange={changeFilter}>
+              <option value="all">Все задачи</option>
+              <option value="unsuccess">Только невыполненные</option>
+              <option value="success">Только выполненные</option>
+            </Select>
+            <Button
+              size="sm"
+              mx={2}
+              colorScheme="teal"
+              variant="solid"
+              onClick={changeSort}
+            >
+              ↓↑
+            </Button>
+          </Flex>
+        </Container>
         {tasksSort().map((item) => (
           <Task
             editingTask={taskNameChange}
@@ -121,6 +122,6 @@ export const List = () => {
           ></Task>
         ))}
       </TasksList>
-    </div>
+    </Container>
   );
 };

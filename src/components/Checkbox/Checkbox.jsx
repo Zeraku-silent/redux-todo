@@ -1,15 +1,15 @@
-import { StyledCheckbox } from "./Checkbox.styles";
+import { Checkbox } from "@chakra-ui/react";
 
-export const Checkbox = ({ task, handleToggle }) => {
+export const CheckboxElement = ({ task, handleToggle }) => {
   const onClick = () => {
     handleToggle(task.id);
   };
   return (
-    <StyledCheckbox
+    <Checkbox
+      colorScheme="teal"
       value={task.checked}
       checked={task.checked}
-      type="checkbox"
       onChange={onClick}
-    ></StyledCheckbox>
+    ></Checkbox>
   );
 };

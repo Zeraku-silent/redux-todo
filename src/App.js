@@ -1,11 +1,18 @@
 import { Title } from "./components/Title";
 import { List } from "./components/List";
-import { ColorModeSwitcher } from "./components/ColorModeSwitcher";
+import { Container, Text, Box, Heading, Divider } from "@chakra-ui/react";
 
 function App() {
   return (
     <div className="App">
-      <Title />
+      <Container maxW="container.lg">
+        <Box py={6} textAlign="center" margin={6}>
+          <Heading size="2xl" fontSize="6xl" color="teal">
+            Список дел
+          </Heading>
+        </Box>
+      </Container>
+      <Divider />
 
       <List />
     </div>
