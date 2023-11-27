@@ -14,7 +14,15 @@ import {
   toggleFilter,
   loadStorage,
 } from "../../store";
-import { Button, Container, Box, Select, Flex } from "@chakra-ui/react";
+import {
+  Button,
+  Container,
+  Box,
+  Select,
+  Flex,
+  Spacer,
+  Center,
+} from "@chakra-ui/react";
 
 export const List = () => {
   const dispatch = useDispatch();
@@ -89,29 +97,29 @@ export const List = () => {
   };
 
   return (
-    <Container maxW="container.sm">
-      <Box>
+    <Box bg mt="30" pl={10}>
+      <Center>
         <Controller addTodo={addTodo} />
-      </Box>
-      <TasksList>
-        <Container size="lg" m={4}>
-          <Flex>
-            <Select value={filter} onChange={changeFilter}>
-              <option value="all">Все задачи</option>
-              <option value="unsuccess">Только невыполненные</option>
-              <option value="success">Только выполненные</option>
-            </Select>
-            <Button
-              size="sm"
-              mx={2}
-              colorScheme="teal"
-              variant="solid"
-              onClick={changeSort}
-            >
-              ↓↑
-            </Button>
-          </Flex>
-        </Container>
+      </Center>
+
+      <Flex mb={20} pl="3" w="280px">
+        <Select value={filter} onChange={changeFilter}>
+          <option value="all">Все задачи</option>
+          <option value="unsuccess">Только невыполненные</option>
+          <option value="success">Только выполненные</option>
+        </Select>
+
+        <Button
+          size="sm"
+          mx={2}
+          colorScheme="teal"
+          variant="solid"
+          onClick={changeSort}
+        >
+          ↓↑
+        </Button>
+      </Flex>
+      <Flex flexDir={"column"} margin="6px">
         {tasksSort().map((item) => (
           <Task
             editingTask={taskNameChange}
@@ -121,7 +129,7 @@ export const List = () => {
             handleToggle={handleChange}
           ></Task>
         ))}
-      </TasksList>
-    </Container>
+      </Flex>
+    </Box>
   );
 };

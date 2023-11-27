@@ -25,15 +25,15 @@ export const Controller = ({ addTodo }) => {
         fontSize={"1.5rem"}
         textAlign="center"
         color="teal"
-        m={6}
+        // m={6}
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleSubmit}
         size="lg"
       ></Input>
-      <Button bg="teal" m={6} type="button" onClick={buttonClick}>
-        ADD
+      <Button bg="teal" p="5" m={6} type="button" onClick={buttonClick}>
+        Добавить
       </Button>
     </InputGroup>
   );
