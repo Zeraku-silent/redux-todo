@@ -16,15 +16,13 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./components/ColorModeSwitcher";
-import { Header } from "./components/Header";
+
 import { wrap } from "framer-motion";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ChakraProvider theme={theme}>
     <Provider store={store}>
-      <Header />
-
       <App />
     </Provider>
   </ChakraProvider>

@@ -22,6 +22,7 @@ import {
   Flex,
   Spacer,
   Center,
+  SimpleGrid,
 } from "@chakra-ui/react";
 
 export const List = () => {
@@ -97,7 +98,7 @@ export const List = () => {
   };
 
   return (
-    <Box bg mt="30" pl={10}>
+    <Box maxWidth={1920} className="mainBoxList" bg mt="30" pl={10}>
       <Center>
         <Controller addTodo={addTodo} />
       </Center>
@@ -119,7 +120,12 @@ export const List = () => {
           ↓↑
         </Button>
       </Flex>
-      <Flex flexDir={"column"} margin="6px">
+      <SimpleGrid
+        justifyContent={"space-around"}
+        columns={3}
+        maxWidth={1920}
+        margin="6px"
+      >
         {tasksSort().map((item) => (
           <Task
             editingTask={taskNameChange}
@@ -129,7 +135,7 @@ export const List = () => {
             handleToggle={handleChange}
           ></Task>
         ))}
-      </Flex>
+      </SimpleGrid>
     </Box>
   );
 };

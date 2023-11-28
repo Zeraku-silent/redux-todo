@@ -5,11 +5,12 @@ export const CheckboxElement = ({ task, handleToggle }) => {
     handleToggle(task.id);
   };
   return (
-    <Checkbox
+    <input
+      type="checkbox"
       colorScheme="teal"
       value={task.checked}
       checked={task.checked}
       onChange={onClick}
-    ></Checkbox>
+    ></input>
   );
 };

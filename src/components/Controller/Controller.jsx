@@ -17,12 +17,12 @@ export const Controller = ({ addTodo }) => {
     }
   };
   return (
-    <InputGroup padding={5}>
+    <InputGroup width={600} padding={5}>
       <Input
         variant="flushed"
         placeholder="Что хотим сделать?"
-        fontFamily="Roboto sans-serif bold"
-        fontSize={"1.5rem"}
+        fontFamily={"Impact "}
+        fontSize={"1.2rem"}
         textAlign="center"
         color="teal"
         // m={6}

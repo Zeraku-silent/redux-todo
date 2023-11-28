@@ -42,7 +42,6 @@ export const Task = ({ task, handleToggle, handleRemove, editingTask }) => {
       m={2}
       fontFamily={"Impact "}
       fontSize={"1.2rem"}
-      // color={"tomato"}
       fontWeight={400}
       checked={task.checked}
     >
