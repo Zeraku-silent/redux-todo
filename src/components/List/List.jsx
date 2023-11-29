@@ -23,6 +23,7 @@ import {
   Spacer,
   Center,
   SimpleGrid,
+  Grid,
 } from "@chakra-ui/react";
 
 export const List = () => {
@@ -98,13 +99,13 @@ export const List = () => {
   };
 
   return (
-    <Box maxWidth={1920} className="mainBoxList" bg mt="30" pl={10}>
+    <Box className="mainBoxList">
       <Center>
         <Controller addTodo={addTodo} />
       </Center>
 
-      <Flex mb={20} pl="3" w="280px">
-        <Select value={filter} onChange={changeFilter}>
+      <Flex w="500px" pl={"35px"} alignItems={"center"}>
+        <Select w={"280px"} value={filter} onChange={changeFilter}>
           <option value="all">Все задачи</option>
           <option value="unsuccess">Только невыполненные</option>
           <option value="success">Только выполненные</option>
@@ -120,11 +121,14 @@ export const List = () => {
           ↓↑
         </Button>
       </Flex>
-      <SimpleGrid
-        justifyContent={"space-around"}
-        columns={3}
-        maxWidth={1920}
-        margin="6px"
+      <Grid
+        className="GREEEED"
+        // justifyContent={"space-evenly"}
+        gridGap={"20px"}
+        // gridTemplateColumns={"1fr 1fr 1fr 1fr"}
+        // gridTemplateRows={"1fr 1fr 1fr 1fr"}
+
+        margin="30px"
       >
         {tasksSort().map((item) => (
           <Task
@@ -135,7 +139,7 @@ export const List = () => {
             handleToggle={handleChange}
           ></Task>
         ))}
-      </SimpleGrid>
+      </Grid>
     </Box>
   );
 };

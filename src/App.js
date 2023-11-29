@@ -13,10 +13,10 @@ import {
 
 function App() {
   return (
-    <Flex maxWidth={"1800x"} className="App" flexDirection={"column"}>
+    <Box maxW={"1530"} className="App">
       <Header />
       <Container>
-        <Center className="header" py={6} textAlign="center" margin={6}>
+        <Center className="header" textAlign="center" margin={6}>
           <Heading size="2xl" fontSize="6xl" color="teal">
             Список дел
           </Heading>
@@ -24,7 +24,7 @@ function App() {
       </Container>
 
       <List />
-    </Flex>
+    </Box>
   );
 }
 

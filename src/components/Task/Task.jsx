@@ -5,7 +5,11 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Card,
+  CardBody,
+  CardFooter,
   Container,
+  Divider,
   Flex,
   Indicator,
   Input,
@@ -32,21 +36,19 @@ export const Task = ({ task, handleToggle, handleRemove, editingTask }) => {
     handleRemove(task.id);
   };
   return (
-    <Container
-      flexDirection={""}
+    <Card
+      w={260}
+      className="TASK"
       bg={"teal.700"}
       borderRadius={20}
-      textAlign={"center"}
-      w={400}
-      p={2}
-      m={2}
       fontFamily={"Impact "}
-      fontSize={"1.2rem"}
+      fontSize={"1.1rem"}
       fontWeight={400}
+      textAlign={"center"}
       checked={task.checked}
     >
-      <Flex>
-        <Box p={2} m={2} w={"60%"}>
+      <CardBody className="tekst_data" maxW={"200"}>
+        <Container>
           {isEditing ? (
             <Input
               value={taskText}
@@ -56,13 +58,12 @@ export const Task = ({ task, handleToggle, handleRemove, editingTask }) => {
           ) : (
             <TaskText checked={task.checked}>{task.text}</TaskText>
           )}
-        </Box>
-        <Box m={2} p={2}>
-          <Text fontSize={"1rem"}>{task.date}</Text> <br></br>
-        </Box>
-      </Flex>
-      <Flex flexDirection={"column"}>
-        <ButtonGroup spacing="2" margin={2}>
+        </Container>
+        {/* <Text fontSize={"0.9rem"}>{task.date}</Text> */}
+      </CardBody>
+      <Divider />
+      <CardFooter>
+        <ButtonGroup>
           <Button
             _hover={{
               background: "red.500",
@@ -71,6 +72,7 @@ export const Task = ({ task, handleToggle, handleRemove, editingTask }) => {
             variant="solid"
             bg="red.300"
             size="xs"
+            fontWeight={400}
             rightIcon={<FaTrash />}
             onClick={deliteTask}
           >
@@ -84,6 +86,7 @@ export const Task = ({ task, handleToggle, handleRemove, editingTask }) => {
             variant="solid"
             bg="orange"
             size="xs"
+            fontWeight={400}
             rightIcon={<FaPen />}
             onClick={toggleEditing}
           >
@@ -94,7 +97,7 @@ export const Task = ({ task, handleToggle, handleRemove, editingTask }) => {
             handleToggle={handleToggle}
           ></CheckboxElement>
         </ButtonGroup>
-      </Flex>
-    </Container>
+      </CardFooter>
+    </Card>
   );
 };
