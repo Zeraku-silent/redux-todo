@@ -3,7 +3,6 @@ import { CheckboxElement } from "../Checkbox";
 import { useState } from "react";
 import {
   Button,
-  ButtonGroup,
   Text,
   Card,
   CardBody,
@@ -71,47 +70,40 @@ export const Task = ({ task, handleToggle, handleRemove, editingTask }) => {
       </Flex>
 
       <CardFooter>
-        <ButtonGroup w={"auto"} className="button-group">
-          <Flex
-            wrap={"wrap"}
-            gap={10}
-            w={"auto"}
-            gridTemplateColumns={"1fr 1fr 1fr "}
+        <Flex wrap={"wrap"} gap="10px" w={"auto"}>
+          <Button
+            _hover={{
+              background: "red.500",
+              color: "black",
+            }}
+            variant="solid"
+            bg="red.300"
+            size="auto"
+            p={"5px"}
+            fontSize={"calc(9px + 8 * (100vw - 320px) / 880)"}
+            fontWeight={400}
+            rightIcon={<FaTrash />}
+            onClick={deliteTask}
           >
-            <Button
-              _hover={{
-                background: "red.500",
-                color: "black",
-              }}
-              variant="solid"
-              bg="red.300"
-              size="auto"
-              p={"5px"}
-              fontSize={"calc(9px + 8 * (100vw - 320px) / 880)"}
-              fontWeight={400}
-              rightIcon={<FaTrash />}
-              onClick={deliteTask}
-            >
-              Удалить
-            </Button>
-            <Button
-              _hover={{
-                background: "orange.500",
-                color: "black",
-              }}
-              variant="solid"
-              bg="orange"
-              size="auto"
-              p={"5px"}
-              fontSize={"calc(9px + 8 * (100vw - 320px) / 880)"}
-              fontWeight={400}
-              rightIcon={<FaPen />}
-              onClick={toggleEditing}
-            >
-              Редактировать
-            </Button>
-          </Flex>
-        </ButtonGroup>
+            Удалить
+          </Button>
+          <Button
+            _hover={{
+              background: "orange.500",
+              color: "black",
+            }}
+            variant="solid"
+            bg="orange"
+            size="auto"
+            p={"5px"}
+            fontSize={"calc(9px + 8 * (100vw - 320px) / 880)"}
+            fontWeight={400}
+            rightIcon={<FaPen />}
+            onClick={toggleEditing}
+          >
+            Редактировать
+          </Button>
+        </Flex>
       </CardFooter>
     </Card>
   );
