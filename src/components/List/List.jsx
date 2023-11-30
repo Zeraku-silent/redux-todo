@@ -1,8 +1,6 @@
-import { TasksList } from "./List.styles";
 import { Task } from "../Task";
 import { Controller } from "../Controller";
-import { useEffect, useRef, useState } from "react";
-import { FaArrowCircleUp } from "react-icons/fa";
+import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,17 +12,7 @@ import {
   toggleFilter,
   loadStorage,
 } from "../../store";
-import {
-  Button,
-  Container,
-  Box,
-  Select,
-  Flex,
-  Spacer,
-  Center,
-  SimpleGrid,
-  Grid,
-} from "@chakra-ui/react";
+import { Button, Box, Select, Flex, Center, Grid } from "@chakra-ui/react";
 
 export const List = () => {
   const dispatch = useDispatch();
@@ -35,7 +23,7 @@ export const List = () => {
   useEffect(() => {
     const startStorage = localStorage.getItem("storage") || "[]";
     dispatch(loadStorage(JSON.parse(startStorage)));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     localStorage.setItem("storage", JSON.stringify(tasks));
@@ -58,25 +46,26 @@ export const List = () => {
     return filtredTasks;
   };
 
-  useEffect(() => {
-    tasksFiltration();
-  }, [tasks, filter]);
-  useEffect(() => {
-    tasksSort();
-  }, [sort, tasks]);
-
-  useEffect(() => {
-    tasksSort();
-  }, [sort, tasks]);
-
   const tasksSort = () => {
     const sorted = tasksFiltration().sort((a, b) => {
       if (b.date > a.date) {
         return -1;
       }
+      if (b.date < a.date) {
+        return 1;
+      }
+      return 0;
     });
     return sort ? sorted : sorted.reverse();
   };
+
+  useEffect(() => {
+    tasksFiltration();
+  });
+
+  useEffect(() => {
+    tasksSort();
+  });
 
   const addTodo = (text) => {
     dispatch(createNewTask(text));
@@ -125,7 +114,7 @@ export const List = () => {
         className="GREEEED"
         // justifyContent={"space-evenly"}
         gridGap={"20px"}
-        // gridTemplateColumns={"1fr 1fr 1fr 1fr"}
+        gridTemplateColumns={"1fr 1fr 1fr 1fr 1fr"}
         // gridTemplateRows={"1fr 1fr 1fr 1fr"}
 
         margin="30px"

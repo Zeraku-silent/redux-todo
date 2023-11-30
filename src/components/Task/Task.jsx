@@ -2,20 +2,17 @@ import { TaskText } from "./Task.styles";
 import { CheckboxElement } from "../Checkbox";
 import { useState } from "react";
 import {
-  Box,
   Button,
   ButtonGroup,
+  Text,
   Card,
   CardBody,
   CardFooter,
-  Container,
   Divider,
-  Flex,
-  Indicator,
   Input,
-  Text,
+  Flex,
 } from "@chakra-ui/react";
-import { FaBitbucket, FaCross, FaPen, FaPlus, FaTrash } from "react-icons/fa";
+import { FaPen, FaTrash } from "react-icons/fa";
 
 export const Task = ({ task, handleToggle, handleRemove, editingTask }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -37,18 +34,22 @@ export const Task = ({ task, handleToggle, handleRemove, editingTask }) => {
   };
   return (
     <Card
-      w={260}
+      w={"auto"}
+      h={"auto"}
       className="TASK"
       bg={"teal.700"}
-      borderRadius={20}
       fontFamily={"Impact "}
       fontSize={"1.1rem"}
       fontWeight={400}
       textAlign={"center"}
       checked={task.checked}
     >
-      <CardBody className="tekst_data" maxW={"200"}>
-        <Container>
+      <CardBody>
+        <Text
+          m={"5px"}
+          width={"auto"}
+          fontSize={"calc(9px + 8 * (100vw - 320px) / 880)"}
+        >
           {isEditing ? (
             <Input
               value={taskText}
@@ -58,44 +59,58 @@ export const Task = ({ task, handleToggle, handleRemove, editingTask }) => {
           ) : (
             <TaskText checked={task.checked}>{task.text}</TaskText>
           )}
-        </Container>
-        {/* <Text fontSize={"0.9rem"}>{task.date}</Text> */}
+        </Text>
       </CardBody>
       <Divider />
+      <Flex p={"5px"} justifyContent={"space-around"}>
+        <Text fontSize={"1.4rem"}>{task.date}</Text>
+        <CheckboxElement
+          task={task}
+          handleToggle={handleToggle}
+        ></CheckboxElement>
+      </Flex>
+
       <CardFooter>
-        <ButtonGroup>
-          <Button
-            _hover={{
-              background: "red.500",
-              color: "black",
-            }}
-            variant="solid"
-            bg="red.300"
-            size="xs"
-            fontWeight={400}
-            rightIcon={<FaTrash />}
-            onClick={deliteTask}
+        <ButtonGroup w={"auto"} className="button-group">
+          <Flex
+            wrap={"wrap"}
+            gap={10}
+            w={"auto"}
+            gridTemplateColumns={"1fr 1fr 1fr "}
           >
-            Удалить
-          </Button>
-          <Button
-            _hover={{
-              background: "orange.500",
-              color: "black",
-            }}
-            variant="solid"
-            bg="orange"
-            size="xs"
-            fontWeight={400}
-            rightIcon={<FaPen />}
-            onClick={toggleEditing}
-          >
-            Редактировать
-          </Button>
-          <CheckboxElement
-            task={task}
-            handleToggle={handleToggle}
-          ></CheckboxElement>
+            <Button
+              _hover={{
+                background: "red.500",
+                color: "black",
+              }}
+              variant="solid"
+              bg="red.300"
+              size="auto"
+              p={"5px"}
+              fontSize={"calc(9px + 8 * (100vw - 320px) / 880)"}
+              fontWeight={400}
+              rightIcon={<FaTrash />}
+              onClick={deliteTask}
+            >
+              Удалить
+            </Button>
+            <Button
+              _hover={{
+                background: "orange.500",
+                color: "black",
+              }}
+              variant="solid"
+              bg="orange"
+              size="auto"
+              p={"5px"}
+              fontSize={"calc(9px + 8 * (100vw - 320px) / 880)"}
+              fontWeight={400}
+              rightIcon={<FaPen />}
+              onClick={toggleEditing}
+            >
+              Редактировать
+            </Button>
+          </Flex>
         </ButtonGroup>
       </CardFooter>
     </Card>

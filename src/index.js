@@ -4,20 +4,7 @@ import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-  Flex,
-} from "@chakra-ui/react";
-import { ColorModeSwitcher } from "./components/ColorModeSwitcher";
-
-import { wrap } from "framer-motion";
+import { ChakraProvider, theme } from "@chakra-ui/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

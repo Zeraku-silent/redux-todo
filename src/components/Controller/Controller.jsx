@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { StyledButton } from "./Controller.styles";
-import { Container, Input, Button, InputGroup } from "@chakra-ui/react";
+import { Input, Button, InputGroup } from "@chakra-ui/react";
 export const Controller = ({ addTodo }) => {
   const [value, setValue] = useState(" ");
 
