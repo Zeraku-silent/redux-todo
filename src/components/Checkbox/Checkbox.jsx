@@ -1,14 +1,15 @@
+import { Checkbox } from '@chakra-ui/react';
+
 export const CheckboxElement = ({ task, handleToggle }) => {
-  const onClick = () => {
-    handleToggle(task.id);
-  };
-  return (
-    <input
-      type="checkbox"
-      colorScheme="teal"
-      value={task.checked}
-      checked={task.checked}
-      onChange={onClick}
-    ></input>
-  );
+   const onClick = () => {
+      handleToggle(task.id);
+   };
+   return (
+      <Checkbox
+         isChecked={task.checked}
+         colorScheme="teal"
+         checked={task.checked}
+         onChange={onClick}
+      />
+   );
 };
